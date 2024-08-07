@@ -9,7 +9,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const functions = firebase.functions();
 
@@ -29,7 +29,7 @@ document.getElementById('sign-in-button').addEventListener('click', () => {
 document.getElementById('delete-button').addEventListener('click', () => {
     const user = auth.currentUser;
     if (user) {
-        const deleteUserData = functions.httpsCallable('deleteUserData');
+        const deleteUserData = firebase.functions().httpsCallable('deleteUserData');
         deleteUserData({ uid: user.uid }).then((result) => {
             console.log(result.data);
             auth.signOut().then(() => {
