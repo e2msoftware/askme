@@ -1,4 +1,4 @@
-// Firebase config
+
         // Firebase yapılandırma kodunu buraya yapıştırın
         const firebaseConfig = {
             apiKey: "AIzaSyBLpa-NuuEoeNjvZlwgf2e6Tx_qMcbQkJs",
@@ -7,9 +7,7 @@
             storageBucket: "gs://sorusor-f8f0f.appspot.com",
             messagingSenderId: "812964088787",
             appId: "1:812964088787:android:c62acddbedd68f6b71bd26",
-            databaseURL: "https://sorusor-f8f0f-default-rtdb.firebaseio.com"
         };
-
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
