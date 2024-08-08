@@ -7,15 +7,22 @@
 </head>
 <body>
     <h1>Delete Firebase User</h1>
+    
+    <!-- Kullanıcıdan alınacak e-posta ve şifre -->
     <form id="deleteUserForm">
         <input type="email" id="email" placeholder="Enter User Email" required>
         <input type="password" id="password" placeholder="Enter User Password" required>
         <button type="submit">Delete User</button>
     </form>
 
+    <!-- Mesajları göstermek için bir div -->
+    <div id="output"></div>
+
+    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+
     <script>
         // Firebase yapılandırma kodunu buraya yapıştırın
         const firebaseConfig = {
@@ -32,6 +39,18 @@
         const app = firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const database = firebase.database();
+
+        // Mesajları sayfada göstermek için fonksiyon
+        const outputElement = document.getElementById('output');
+
+        function showMessage(message) {
+            outputElement.innerHTML += message + '<br>';
+        }
+
+        // console.log'u sayfada göstermek için yeniden tanımla
+        console.log = function(message) {
+            showMessage(message);
+        };
 
         // Formu işleyin
         document.getElementById('deleteUserForm').addEventListener('submit', function(e) {
@@ -53,11 +72,11 @@
                 })
                 .then(() => {
                     console.log('User data deleted successfully');
-                    alert('User and user data deleted');
+                    showMessage('User and user data deleted');
                 })
                 .catch((error) => {
-                    console.error('Error deleting user:', error);
-                    alert('Error deleting user: ' + error.message);
+                    console.log('Error deleting user: ' + error.message);
+                    showMessage('Error deleting user: ' + error.message);
                 });
         });
     </script>
