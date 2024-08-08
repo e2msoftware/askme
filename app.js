@@ -1,13 +1,13 @@
 // Firebase config
-const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
-};
-
+        const firebaseConfig = {
+            apiKey: "AIzaSyBLpa-NuuEoeNjvZlwgf2e6Tx_qMcbQkJs",
+            authDomain: "sorusor-f8f0f.firebaseapp.com",
+            projectId: "sorusor-f8f0f",
+            storageBucket: "gs://sorusor-f8f0f.appspot.com",
+            messagingSenderId: "812964088787",
+            appId: "1:812964088787:android:c62acddbedd68f6b71bd26",
+            databaseURL: "https://sorusor-f8f0f-default-rtdb.firebaseio.com"
+        };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
