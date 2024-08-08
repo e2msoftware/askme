@@ -24,9 +24,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
 
     <script>
-        // Firebase SDK yüklendikten sonra JavaScript kodunu çalıştırın
-        document.addEventListener('DOMContentLoaded', function() {
-             // Firebase yapılandırma kodunu buraya yapıştırın
+        // Firebase yapılandırma kodunu buraya yapıştırın
         const firebaseConfig = {
             apiKey: "AIzaSyBLpa-NuuEoeNjvZlwgf2e6Tx_qMcbQkJs",
             authDomain: "sorusor-f8f0f.firebaseapp.com",
@@ -37,50 +35,49 @@
             databaseURL: "https://sorusor-f8f0f-default-rtdb.firebaseio.com"
         };
 
-            // Firebase'i başlat
-            const app = firebase.initializeApp(firebaseConfig);
-            const auth = firebase.auth();
-            const database = firebase.database();
+        // Firebase'i başlat
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const database = firebase.database();
 
-            // Mesajları sayfada göstermek için fonksiyon
-            const outputElement = document.getElementById('output');
+        // Mesajları sayfada göstermek için fonksiyon
+        const outputElement = document.getElementById('output');
 
-            function showMessage(message) {
-                outputElement.innerHTML += message + '<br>';
-            }
+        function showMessage(message) {
+            outputElement.innerHTML += message + '<br>';
+        }
 
-            // console.log'u sayfada göstermek için yeniden tanımla
-            console.log = function(message) {
-                showMessage(message);
-            };
+        // console.log'u sayfada göstermek için yeniden tanımla
+        console.log = function(message) {
+            showMessage(message);
+        };
 
-            // Formu işleyin
-            document.getElementById('deleteUserForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                const email = document.getElementById('email').value;
-                const password = document.getElementById('password').value;
+        // Formu işleyin
+        document.getElementById('deleteUserForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
 
-                // Kullanıcıyı kimlik doğrulaması yaparak giriş yapın
-                auth.signInWithEmailAndPassword(email, password)
-                    .then((userCredential) => {
-                        const user = userCredential.user;
-                        const uid = user.uid;
+            // Kullanıcıyı kimlik doğrulaması yaparak giriş yapın
+            auth.signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    const uid = user.uid;
 
-                        // Kullanıcıyı sil
-                        return user.delete().then(() => {
-                            console.log('User deleted successfully');
-                            return database.ref('users/' + uid).remove();
-                        });
-                    })
-                    .then(() => {
-                        console.log('User data deleted successfully');
-                        showMessage('User and user data deleted');
-                    })
-                    .catch((error) => {
-                        console.log('Error deleting user: ' + error.message);
-                        showMessage('Error deleting user: ' + error.message);
+                    // Kullanıcıyı sil
+                    return user.delete().then(() => {
+                        console.log('User deleted successfully');
+                        return database.ref('users/' + uid).remove();
                     });
-            });
+                })
+                .then(() => {
+                    console.log('User data deleted successfully');
+                    showMessage('User and user data deleted');
+                })
+                .catch((error) => {
+                    console.log('Error deleting user: ' + error.message);
+                    showMessage('Error deleting user: ' + error.message);
+                });
         });
     </script>
 </body>
