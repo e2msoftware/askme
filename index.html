@@ -7,6 +7,7 @@
     <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
 </head>
 <body>
+    <script src="/app.js"></script>
     <h1>Delete User Data</h1>
     <div id="auth-container">
         <input type="email" id="email" placeholder="Email">
@@ -14,7 +15,7 @@
         <button id="sign-in-button">Sign In</button>
     </div>
     <div id="delete-container" style="display: none;">
-        <button id="delete-button">Delete My Data</button>
+       <button onclick="DeleteUser()">Delete My Data </button>
     </div>
 </body>
 </html>
